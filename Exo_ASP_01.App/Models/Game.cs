@@ -1,4 +1,6 @@
-﻿namespace Exo_ASP_02.App.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Exo_ASP_02.App.Models
 {
     public class Game
     {
@@ -10,5 +12,24 @@
         public double Price { get; set; }
         public string PEGI { get; set; }
         public string? ImgSrc { get; set; }
+    }
+
+    public class GameAdd
+    {
+        [Required]
+        public string Name { get; set; }
+
+        public string? Description { get; set; }
+
+        [Required]
+        [Range(1900, 3000)]
+        public int ReleaseYear { get; set; }
+
+        [Required]
+        [Range(0, 1_000_000)]
+        public double? Price { get; set; }
+
+        [Required]
+        public string PEGI { get; set; }
     }
 }

@@ -5,7 +5,7 @@
 <h2>Information</h2>
 <dl>
     <dt>Genre(s)</dt>
-    <dd>@string.Join(", ",  Model.Genres.Select(g => g.Name))</dd>
+    <dd>@(Model.Genres is null ? "N/A" : string.Join(", ",  Model.Genres.Select(g => g.Name)))</dd>
     <dt>Année de sortie:</dt>
     <dd>@Model.ReleaseYear</dd>
     <dt>PEGI</dt>

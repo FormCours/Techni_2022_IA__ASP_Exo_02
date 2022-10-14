@@ -40,9 +40,34 @@ namespace Exo_ASP_02.App.Controllers
             return View(game);
         }
 
+
         public IActionResult Add()
         {
+            Title = "Ajouter un jeu";
+
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(GameAdd game)
+        {
+            if(!ModelState.IsValid)
+            {
+                Title = "(╯°□°）╯︵ ┻━┻";
+
+                return View();
+            }
+
+            FakeDB.InsertGame(new Game()
+            {
+                Name = game.Name,
+                Description = game.Description,
+                ReleaseYear = game.ReleaseYear,
+                Price = (double)game.Price,
+                PEGI = game.PEGI
+            });
+
+            return RedirectToAction("Index");
         }
     }
 }
