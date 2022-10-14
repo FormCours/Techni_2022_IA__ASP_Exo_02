@@ -31,5 +31,9 @@ namespace Exo_ASP_02.App.Models
 
         [Required]
         public string PEGI { get; set; }
+
+        [Required]
+        [MinLength(1)]
+        public List<string> Genres { get; set; }
     }
 }

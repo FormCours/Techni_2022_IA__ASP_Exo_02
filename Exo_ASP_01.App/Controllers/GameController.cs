@@ -58,13 +58,32 @@ namespace Exo_ASP_02.App.Controllers
                 return View();
             }
 
+
+            List<GameGenre> genres = new List<GameGenre>();
+            foreach(string? genre in game.Genres)
+            {
+                if(genre != null)
+                {
+                    GameGenre gg = FakeDB.GetOrInsertGenre(genre);
+
+                    genres.Add(gg);
+                }
+            }
+
+            List<GameGenre> genres2 = game.Genres
+                .Where(g => g != null)
+                .Select(g => FakeDB.GetOrInsertGenre(g))
+                .ToList();
+
+
             FakeDB.InsertGame(new Game()
             {
                 Name = game.Name,
                 Description = game.Description,
                 ReleaseYear = game.ReleaseYear,
                 Price = (double)game.Price,
-                PEGI = game.PEGI
+                PEGI = game.PEGI,
+                Genres = genres
             });
 
             return RedirectToAction("Index");
