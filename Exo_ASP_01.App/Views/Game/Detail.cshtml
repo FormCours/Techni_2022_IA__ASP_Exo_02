@@ -1,0 +1,21 @@
+﻿@model Game
+
+<h1>Detail de jeu @Model.Name</h1>
+
+<h2>Information</h2>
+<dl>
+    <dt>Genre(s)</dt>
+    <dd>@string.Join(", ",  Model.Genres.Select(g => g.Name))</dd>
+    <dt>Année de sortie:</dt>
+    <dd>@Model.ReleaseYear</dd>
+    <dt>PEGI</dt>
+    <dd>@Model.PEGI</dd>
+    <dt>Prix</dt>
+    <dd>@Model.Price</dd>
+</dl>
+
+<h2>Description</h2>
+@if(!(Model.ImgSrc is null)) {
+    <img src="@Model.ImgSrc" alt="Illustration de @Model.Name" />
+}
+<p>@Model.Description</p>
